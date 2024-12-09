@@ -1,7 +1,5 @@
-create table student_university (
-    id serial primary key ,
-    idnp_student varchar(13) not null ,
-    id_university int not null ,
-    foreign key (idnp_student) references student(idnp),
-    foreign key (id_university) references university(id)
-);
+insert into student values
+    ('1234567891234', 'test_first', 'test_last', 'test@gmail.com', 'M', 21);
+
+insert into student values
+    ('2234567891234', 'test_first2', 'test_last2', 'test2@gmail.com', 'M', 22);

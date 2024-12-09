@@ -1,17 +1,21 @@
 package md.utm.entity;
 
-public class University {
+import java.util.List;
+
+public class UniversityStudent {
 
     private Long id;
     private String fullName;
     private String shortName;
     private String address;
+    private List<Student> studentList;
 
-    public University(Long id, String fullName, String shortName, String address) {
+    public UniversityStudent(Long id, String fullName, String shortName, String address, List<Student> studentList) {
         this.id = id;
         this.fullName = fullName;
         this.shortName = shortName;
         this.address = address;
+        this.studentList = studentList;
     }
 
     public Long getId() {
@@ -46,13 +50,22 @@ public class University {
         this.address = address;
     }
 
+    public List<Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(List<Student> studentList) {
+        this.studentList = studentList;
+    }
+
     @Override
     public String toString() {
-        return "University{" +
+        return "UniversityStudent{" +
                 "id=" + id +
                 ", fullName='" + fullName + '\'' +
                 ", shortName='" + shortName + '\'' +
                 ", address='" + address + '\'' +
+                ", studentList=" + studentList +
                 '}';
     }
 }

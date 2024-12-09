@@ -1,6 +1,7 @@
-create table university (
+create table student_university (
     id serial primary key ,
-    full_name varchar not null ,
-    short_name varchar(10) not null ,
-    address varchar
+    idnp_student varchar(13) not null ,
+    id_university int not null ,
+    foreign key (idnp_student) references student(idnp),
+    foreign key (id_university) references university(id)
 );
