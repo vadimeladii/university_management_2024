@@ -1,10 +1,20 @@
 package md.utm.entity;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class Student {
 
+    @Size(min = 13, max = 13, message = "idnp should be 13 characters long.")
     private String idnp;
+    @NotBlank(message = "firstName is mandatory")
     private String firstName;
+    @NotBlank(message = "lastName is mandatory")
     private String lastName;
+    @NotBlank(message = "email is mandatory")
+    @Email(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+            message = "invalid email format")
     private String email;
     private char gender;
     private int age;

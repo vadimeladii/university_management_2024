@@ -72,4 +72,11 @@ public class StudentRepository {
                     return new Student(idnp, firstName, lastName, email, gender, age_internal);
                 }, age);
     }
+
+    public boolean exists(String idnp) {
+        Integer count = this.jdbcTemplate.queryForObject(
+                "select count(*) from student where idnp = ?", new Object[]{idnp}, Integer.class);
+        
+        return count > 0;
+    }
 }

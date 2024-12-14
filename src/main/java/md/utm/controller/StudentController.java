@@ -1,6 +1,10 @@
 package md.utm.controller;
 
+import jakarta.validation.Valid;
+import lombok.extern.log4j.Log4j;
 import md.utm.entity.Student;
+import md.utm.exception.type.AlreadyExistException;
+import md.utm.exception.type.NotFoundException;
 import md.utm.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +32,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("student")
+@Log4j
 public class StudentController {
 
     @Autowired
@@ -45,16 +50,21 @@ public class StudentController {
 
     @GetMapping("{idnp}")
     public Student retrieveByIdnp(@PathVariable String idnp) {
+        if (!studentRepository.exists(idnp))
+            throw new NotFoundException();
+
         return studentRepository.retrieveByIdnp(idnp);
     }
 
     @PostMapping
-    public void create(@RequestBody Student student) {
+    public void create(@Valid @RequestBody Student student) {
+        if(studentRepository.exists(student.getIdnp()))
+            throw new AlreadyExistException();
         studentRepository.create(student);
     }
 
     @PutMapping("{idnp}")
-    public void update(@PathVariable String idnp, @RequestBody Student student) {
+    public void update(@PathVariable String idnp, @Valid @RequestBody Student student) {
         studentRepository.update(idnp, student);
     }
 
